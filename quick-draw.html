@@ -131,6 +131,7 @@
 	}
 	</script>
 	<body onload = "init()">
+	
 		<canvas id = "can" width = "512" height = "512" style = "position:absolute; top:10%; left:190px; border:2px solid;"></canvas>
 		<div style="position:absolute;top:64%;left:375px;">Choose Color</div>
     <div style="position:absolute;top:67%;left:190px;width:38px;height:38px;background:green;border:2px solid;" id="green" onclick="color(this)"></div>
@@ -148,5 +149,32 @@
 		<input type="button" value="mediumStroke" id="med" size="50" onclick="mediumStroke()" style="position:absolute;top:250px;left:37%;width:38px; height:38px;">
 		<input type="button" value="largeStroke" id="lrg" size="50" onclick="largeStroke()" style="position:absolute;top:310px;left:37%;width:38px; height:38px;">
 		<input type="button" value="hugeStroke" id="hge" size="50" onclick="hugeStroke()" style="position:absolute;top:370px;left:37%;width:38px; height:38px;">
+		
+	
+	<script src="https://www.gstatic.com/firebasejs/7.21.1/firebase.js"></script>
+	<script>
+	var firebaseConfig = {
+		apiKey: , // enter API key here, not putting it on Github
+		authDomain: "close-draw.firebaseapp.com",
+		databaseURL: "https://close-draw.firebaseio.com",
+		projectId: "close-draw",
+		storageBucket: "close-draw.appspot.com",
+		messagingSenderId: "1021757931194",
+		appId: "1:1021757931194:web:16254c5da128139f66cc83",
+		measurementId: "G-JY2FYVSB2R"
+	};
+	// Initialize Firebase
+	firebase.initializeApp(firebaseConfig);
+	firebase.analytics();
+	
+	var storage = firebase.storage();
+	var storageRef = firebase.storage().ref();
+	var imagesRef = storageRef.child('images');
+	
+	var message = 'test message';
+	imagesRef.putString(message).then(function(snapshot) {
+		console.log('Uploaded a raw string!');
+	});
+	</script>
 </body>
 </html>
