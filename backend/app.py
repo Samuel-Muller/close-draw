@@ -30,8 +30,9 @@ def search(client_lat, client_lon, max_distance):
     coordUser = (client_lat, client_lon)
     coordDB = (lat, lon)
     print(coordUser, coordDB)
-    distance = great_circle(coordUser, coordDB).miles
-    if distance <= max_distance:
+    distance = great_circle(coordUser, coordDB)
+    if distance.miles <= max_distance:
+      val["Distance"] = distance.feet
       good_drawings.append(val)
 
   return good_drawings
