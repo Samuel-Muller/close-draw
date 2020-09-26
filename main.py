@@ -45,12 +45,12 @@ for key, val in remove.items():
     oldTime = datetime.datetime.strptime(val["Time"], "%a %b %d %H:%M:%S %Y")
     newTime = datetime.datetime.now()
     lapTime = newTime - oldTime
-    if(lapTime.total_seconds()>(600)):
+    if(lapTime.total_seconds()>(86400)):
         firebase.delete('/testUser', key)
         print("Deleted database" + key)
 
 #    oldTime = datetime.datetime.strptime(val['Time'],"%m/%d%Y, %H:%M:%S")
-"""
+
 def search(client_lat, client_lon, max_distance):
   drawings = firebase.get("/testUser", None)
   good_drawings = []
@@ -66,6 +66,6 @@ def search(client_lat, client_lon, max_distance):
   return good_drawings
 
 
-"""
+
 
 
