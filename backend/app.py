@@ -32,7 +32,7 @@ def search(client_lat, client_lon, max_distance):
     print(coordUser, coordDB)
     distance = great_circle(coordUser, coordDB)
     if distance.miles <= max_distance:
-      val["Distance"] = distance.feet
+      val["Distance"] = int(distance.feet)
       good_drawings.append(val)
 
   return good_drawings
@@ -40,8 +40,8 @@ def search(client_lat, client_lon, max_distance):
 
 def upload(image_url, caption, lat, lon):
     uploadData = {
-        'Longitude': lat,
-        'Latitude' :lon,
+        'Longitude': lon,
+        'Latitude': lat,
         'Time': datetime.datetime.now().strftime("%a %b %d %H:%M:%S %Y"),
         'Picture Location': image_url,
         'Caption': caption,
@@ -69,7 +69,7 @@ def getDrawing(id):
 @app.route("/loodle/upload", methods=["POST"])
 def _upload():
     data = request.json
-    upload(data["url"], data["caption"], data["lat"], data["lon"])
+    upload(data["url"], data["caption"], float(data["lat"]), float(data["lon"]))
     return json.dumps({"success": True})
 
 @app.route("/loodle/search")
