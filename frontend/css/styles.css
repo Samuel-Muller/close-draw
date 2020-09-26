@@ -1,0 +1,57 @@
+/* https://github.com/nitemarket/floating-button-menu */
+.mdl-fab-bottom-right {
+	position: fixed;
+	bottom: 24px;
+	right: 24px;
+	transition: bottom .25s cubic-bezier(0,0,.2,1);
+	z-index: 10000;
+}
+
+.drawing.mdl-card {
+	width: 100%;
+}
+
+
+.mdl-card__actions {
+	display: flex;
+	box-sizing:border-box;
+	align-items: center;
+	justify-content: space-evenly;
+}
+
+.buttons {
+	max-width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+}
+
+.page-content {
+	max-width: 516px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 16px;
+	padding-right: 16px;
+	margin-top: 8px;
+}
+
+.middle {
+		display: inline-flex;
+		vertical-align: middle;
+}
+
+.like {
+	color: #388E3C;
+}
+
+.dislike {
+	color: #D32F2F;
+}
+
+canvas {
+	border: 2px solid gray;
+	
+}
+.pen-width {
+	width: 100%;
+}

@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Close Draw</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
+  <body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+          <!-- Title -->
+          <span class="mdl-layout-title">Close Draw</span>
+          <!-- Add spacer, to align navigation to the right -->
+          <div class="mdl-layout-spacer"></div>
+        </div>
+      </header>
+      <main class="mdl-layout__content">
+        <div class="page-content">
+          <!-- Base post card -->
+          <div class="drawing mdl-card mdl-shadow--2dp">
+            <img src="img/flower.png">
+            <div class="mdl-card__supporting-text">
+              <b class="middle"><i class="material-icons">location_on</i> 500 feet away</b><br>
+              This is a really pretty flower. We need more flowers like this.
+            </div>
+            <div class="mdl-card__actions mdl-card--border">
+              <button class="mdl-button mdl-js-button mdl-button--icon dislike">
+                <i class="material-icons">thumb_down</i>
+              </button>
+              <b>+15</b>
+              <button class="mdl-button mdl-js-button mdl-button--icon like">
+                <i class="material-icons">thumb_up</i>
+              </button>
+            </div>
+          </div>
+          <br><br><br><br>
+        </div>
+        <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-fab-bottom-right">
+          <i class="material-icons">add</i>
+        </button>
+      </main>
+    </div>
+  </body>
+</html>
