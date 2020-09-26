@@ -90,8 +90,12 @@ def _dislike():
     return json.dumps(getDrawing(args["id"]))
 
 @app.route("/loodle/")
-def _ree():
+def _index():
     return render_template("index.html")
+
+@app.route("/loodle/draw")
+def _draw():
+    return render_template("draw.html")
 
 @app.route('/loodle/js/<path:path>')
 def send_js(path):
