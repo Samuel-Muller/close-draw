@@ -6,8 +6,8 @@ import requests
 
 from geopy.distance import great_circle
 
-from flask import Flask, request
-app = Flask(__name__)
+from flask import Flask, request, render_template, send_from_directory
+app = Flask(__name__,template_folder="../frontend", static_url_path="")
 
 firebase = firebase.FirebaseApplication('https://close-draw.firebaseio.com', None)
 
@@ -90,4 +90,12 @@ def _dislike():
 
 @app.route("/")
 def _ree():
-    return "REEEEEEEEEEEEEEEEEE"
+    return render_template("index.html")
+
+@app.route('/js/<path:path>')
+def send_js(path):
+    return send_from_directory('../frontend/js', path)
+
+@app.route('/css/<path:path>')
+def send_css(path):
+    return send_from_directory('../frontend/css', path)
