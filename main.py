@@ -5,10 +5,10 @@ from firebase import firebase
 from geopy.distance import great_circle
 from firebase_admin import credentials
 from firebase_admin import db
-import time
+import datetime
 
-t = time.localtime()
-current_time = time.strftime("%H:%M:%S", t)
+t = datetime.datetime.now()
+t = t.strftime("%a %b %d %H:%M:%S %Y")
 send_url = "http://api.ipstack.com/check?access_key=6a554c654da3f5d634ab99a2bedae475"
 geo_req = requests.get(send_url)
 geo_json = json.loads(geo_req.text)
@@ -19,6 +19,7 @@ city = geo_json['city']
 # open database
 firebase = firebase.FirebaseApplication('https://close-draw.firebaseio.com', None)
 
+#TODO: Check if time is more than 24 hours
 
 
 #what to add to each database
@@ -26,7 +27,7 @@ data = {
     'Longitude':longitude,
     'Latitude':latitude,
     'City':city,
-    'Time':current_time,
+    'Time':t,
     'Picture Location':'PUTGOOGLECLOUDSPACE',
     'Caption':'HEREWITHMYGIRLS',
     'Likes':'Count',
@@ -36,10 +37,19 @@ data = {
 #where to POST IT (CHANGE '/testUser' to something more better)
 result = firebase.post('/testUser', data)
 #this will print the ID KEY
-print(result)
+
 #function to pass and sort
+remove = firebase.get('/testUser', None)
+for key, val in remove.items():
+    print('DB TIME: ' + val["Time"])
+    oldTime = datetime.datetime.strptime(val["Time"], "%a %b %d %H:%M:%S %Y")
+    newTime = datetime.datetime.now()
+    lapTime = newTime - oldTime
+    print(lapTime)
+#    oldTime = datetime.datetime.strptime(val['Time'],"%m/%d%Y, %H:%M:%S")
+"""
 def search(client_lat, client_lon, max_distance):
-  drawings = firebase.get("/posts", None)
+  drawings = firebase.get("/testUser", None)
   good_drawings = []
   for key, val in drawings.items():
     val["_id"] = key # just to make it easier to send to Evan
@@ -53,6 +63,6 @@ def search(client_lat, client_lon, max_distance):
   return good_drawings
 
 
-
+"""
 
 
