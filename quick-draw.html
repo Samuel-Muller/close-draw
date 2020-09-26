@@ -143,7 +143,7 @@
     <div style="position:absolute;top:67%;left:550px;width:38px;height:38px;background:white;border:2px solid;" id="white" onclick="color(this)"></div>
 		<div style="position:absolute;top:67%;left:610px;width:38px;height:38px;background:purple;border:2px solid;" id="purple" onclick="color(this)"></div>
     <img id="canvasimg" style="position:absolute;top:10%;left:52%;" style="display:none;">
-    <input type="button" value="save" id="btn" size="30" onclick="save()" style="position:absolute;top:55%;left:10%;width:38px; height:38px;">
+    <input type="button" value="save" id="btn" size="30" onclick="upload()" style="position:absolute;top:55%;left:10%;width:38px; height:38px;">
     <input type="button" value="clear" id="clr" size="23" onclick="clearCan()" style="position:absolute;top:55%;left:15%;width:38px; height:38px;">
 		<input type="button" value="smallStroke" id="sml" size="50" onclick="smallStroke()" style="position:absolute;top:190px;left:37%;width:38px; height:38px;">
 		<input type="button" value="mediumStroke" id="med" size="50" onclick="mediumStroke()" style="position:absolute;top:250px;left:37%;width:38px; height:38px;">
@@ -154,7 +154,7 @@
 	<script src="https://www.gstatic.com/firebasejs/7.21.1/firebase.js"></script>
 	<script>
 	var firebaseConfig = {
-		apiKey: , // enter API key here, not putting it on Github
+		apiKey: "AIzaSyCCm8uJxxDWemcC8FDG_x3ZX6EgOrmyk2g",
 		authDomain: "close-draw.firebaseapp.com",
 		databaseURL: "https://close-draw.firebaseio.com",
 		projectId: "close-draw",
@@ -166,15 +166,17 @@
 	// Initialize Firebase
 	firebase.initializeApp(firebaseConfig);
 	firebase.analytics();
-	
 	var storage = firebase.storage();
-	var storageRef = firebase.storage().ref();
-	var imagesRef = storageRef.child('images');
 	
-	var message = 'test message';
-	imagesRef.putString(message).then(function(snapshot) {
-		console.log('Uploaded a raw string!');
-	});
+	function upload() {
+		var drawing = canvas.toDataURL();
+		var timestamp = Number(new Date());
+		var storageRef = firebase.storage().ref(timestamp.toString());
+		
+		storageRef.putString(drawing, 'data_url').then(function(snapshot) {
+			console.log('Uploaded an image');
+		});
+	}
 	</script>
 </body>
 </html>
