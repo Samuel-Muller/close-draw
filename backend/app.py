@@ -66,37 +66,37 @@ def getDrawing(id):
     drawingRequest = firebase.get('/drawingInfo', id)
     return drawingRequest
 
-@app.route("/upload", methods=["POST"])
+@app.route("/loodle/upload", methods=["POST"])
 def _upload():
     data = request.json
     upload(data["url"], data["caption"], data["lat"], data["lon"])
     return json.dumps({"success": True})
 
-@app.route("/search")
+@app.route("/loodle/search")
 def _search():
     args = request.args
     return json.dumps(search(float(args["lat"]), float(args["lon"]), int(args["dist"])))
 
-@app.route("/like")
+@app.route("/loodle/like")
 def _like():
     args = request.args
     updateLike(args["id"])
     return json.dumps(getDrawing(args["id"]))
 
-@app.route("/dislike")
+@app.route("/loodle/dislike")
 def _dislike():
     args = request.args
     updateDislike(args["id"])
     return json.dumps(getDrawing(args["id"]))
 
-@app.route("/")
+@app.route("/loodle/")
 def _ree():
     return render_template("index.html")
 
-@app.route('/js/<path:path>')
+@app.route('/loodle/js/<path:path>')
 def send_js(path):
     return send_from_directory('../frontend/js', path)
 
-@app.route('/css/<path:path>')
+@app.route('/loodle/css/<path:path>')
 def send_css(path):
     return send_from_directory('../frontend/css', path)
