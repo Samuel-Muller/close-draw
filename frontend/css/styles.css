@@ -55,3 +55,7 @@ canvas {
 .pen-width {
 	width: 100%;
 }
+
+.selected {
+	background-color: rgba(158,158,158,.2);
+}
