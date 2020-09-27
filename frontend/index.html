@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>Close Draw</title>
+    <title>Loodle</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -15,58 +15,21 @@
       <header class="mdl-layout__header">
         <div class="mdl-layout__header-row">
           <!-- Title -->
-          <span class="mdl-layout-title">Close Draw</span>
+          <span class="mdl-layout-title">Loodle</span>
           <!-- Add spacer, to align navigation to the right -->
           <div class="mdl-layout-spacer"></div>
         </div>
       </header>
       <main class="mdl-layout__content">
-        <div class="page-content">
+        <div class="page-content" id="drawings">
           <!-- Base post card -->
-          <div class="drawing mdl-card mdl-shadow--2dp">
-            <img src="img/flower.png">
-            <div class="mdl-card__supporting-text">
-              <b class="middle"><i class="material-icons">location_on</i> 500 feet away</b><br>
-              This is a really pretty flower. We need more flowers like this.
-            </div>
-            <div class="mdl-card__actions mdl-card--border">
-              <button class="mdl-button mdl-js-button mdl-button--icon dislike">
-                <i class="material-icons">thumb_down</i>
-              </button>
-              <b>+15</b>
-              <button class="mdl-button mdl-js-button mdl-button--icon like">
-                <i class="material-icons">thumb_up</i>
-              </button>
-            </div>
-          </div>
-          <br><br><br><br>
+          <br>
         </div>
-        <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-fab-bottom-right">
+        <a href="draw" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-fab-bottom-right">
           <i class="material-icons">add</i>
-        </button>
+        </a>
       </main>
     </div>
-    <script>
-      function search(distance) {
-        function locSuccess(position) {
-          const latitude  = position.coords.latitude;
-          const longitude = position.coords.longitude;
-          var url = new URL("http://evanjmarkowitz.com:8080/search")
-          var params = {lat: latitude, lon: longitude, dist: distance}
-          url.search = new URLSearchParams(params).toString();
-          fetch(url)
-          .then(response => response.json())
-          .then(data => console.log(data));
-        }
-        function locError() {
-          /* pass */
-        }
-        if(!navigator.geolocation) {
-          /* shh */
-        } else {
-          navigator.geolocation.getCurrentPosition(locSuccess, locError);
-        }
-      }
-    </script>
+    <script src="js/search.js"></script>
   </body>
 </html>
